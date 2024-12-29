@@ -1,0 +1,8 @@
+requests
+edge-tts
+google-genai
+selenium
+beautifulsoup4
+markdownify
+boto3
+psycopg2-binary
