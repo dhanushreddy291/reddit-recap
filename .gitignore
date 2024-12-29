@@ -174,3 +174,5 @@ pyrightconfig.json
 mock_data/*
 google_news.py
 format.sh
+
+*.mp3
