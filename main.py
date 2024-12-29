@@ -22,7 +22,9 @@ if __name__ == "__main__":
                 text = """========================================
             Title: {title}
             Description: {description}
-            """.format(title=title, description=description)
+            """.format(
+                    title=title, description=description
+                )
                 reddit_text += text
                 print(text)
             print(
@@ -32,13 +34,12 @@ if __name__ == "__main__":
             )
 
         utc_now = datetime.utcnow()
+        # Convert to IST
         ist_now = utc_now + timedelta(hours=5, minutes=30)
-        current_time_in_ist = ist_now.strftime("%I %p")
-        current_time_in_ist = current_time_in_ist.split()[0]
+        current_time_in_ist = ist_now.strftime("%I %p").split()[0]
 
-        time_2_hours_ago_in_ist = utc_now + timedelta(hours=3, minutes=30)
-        time_2_hours_ago_in_ist = time_2_hours_ago_in_ist.strftime("%I %p")
-        time_2_hours_ago = time_2_hours_ago_in_ist.split()[0]
+        # Subtract 2 hours from IST time
+        time_2_hours_ago = (ist_now - timedelta(hours=2)).strftime("%I %p").split()[0]
 
         reddit_news_summary = generate_reddit_news_summary(
             reddit_text, subreddit, time_2_hours_ago, current_time_in_ist
