@@ -35,7 +35,7 @@ def generate_reddit_news_summary(contents, subreddit_name, start_time, end_time)
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema=News,
-            system_instruction="You are professional news anchor.",
+            system_instruction="You are professional news anchor. You are summarizing the news from Reddit posts in the past 2 hours.",
         ),
     )
     return json.loads(response.text)
