@@ -2,6 +2,7 @@ import logging
 import os
 
 import boto3
+import psycopg2
 from botocore.exceptions import ClientError
 
 
@@ -35,6 +36,17 @@ def upload_file(file_name, bucket, object_name=None, content_type="audio/mpeg"):
     return True
 
 
+def add_to_db(url):
+    print(f"Adding {url} to the database")
+    conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
+    cur = conn.cursor()
+    cur.execute("INSERT INTO summaries (url) VALUES (%s)", (url,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    print(f"{url} added to the database.")
+
+
 if __name__ == "__main__":
     file_name = "reddit_news_summary.mp3"
     bucket_name = "hackathon"
@@ -46,3 +58,7 @@ if __name__ == "__main__":
         print(f"File URL: {file_url}")
     else:
         print("File upload failed.")
+
+    url = "https://example.com"
+    add_to_db(url)
+    print("URL added to the database.")

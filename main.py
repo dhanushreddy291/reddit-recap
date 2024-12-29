@@ -1,9 +1,10 @@
+import os
 from datetime import datetime, timedelta
 
 from generate_audio import generate_audio_from_text
 from llm import generate_reddit_news_summary
 from reddit import get_reddit_scraping_tasks
-from upload import upload_file
+from upload import add_to_db, upload_file
 
 subreddits = ["singularity", "LocalLLaMA", "homeautomation"]
 
@@ -22,9 +23,7 @@ if __name__ == "__main__":
                 text = """========================================
             Title: {title}
             Description: {description}
-            """.format(
-                    title=title, description=description
-                )
+            """.format(title=title, description=description)
                 reddit_text += text
                 print(text)
             print(
@@ -49,5 +48,7 @@ if __name__ == "__main__":
         generate_audio_from_text(reddit_news_summary["content"], audio_path)
 
         upload_file(audio_path, "hackathon", audio_path)
+
+        add_to_db(f"{os.environ.get('AWS_ENDPOINT_URL_S3')}/hackathon/{audio_path}")
 
         print(f"Reddit news summary for {subreddit} generated and uploaded.")
