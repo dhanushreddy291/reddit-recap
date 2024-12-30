@@ -31,3 +31,4 @@ jobs:
           AWS_ENDPOINT_URL_IAM: ${{ secrets.AWS_ENDPOINT_URL_IAM }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           GENAI_API_KEY: ${{ secrets.GENAI_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
