@@ -17,6 +17,7 @@ class News(BaseModel):
 REDDIT_BASE_PROMPT = """Summarize these reddit news as a professional news report. Say one news after the other as a professional anchor having good connection between sentences as news item changes.
 Ignore any news that doesnt have much info and make news so that it condenses all content into easy to assimilate form.
 The subreddit name is {subreddit_name}, so we are making this news as a summary for the subreddit and we can say that in the video that this is summary of posts in the past 2 hours from {start_time} to {end_time}.
+Just only send the news content and nothing else, your text will be directly converted to audio, so make sure no unwanted text is present.
 """
 
 
