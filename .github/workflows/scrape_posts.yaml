@@ -1,7 +1,7 @@
 name: Scrape Latest Posts
 
 on:
-  # schedule:
+  # schedule: # Paused for now as there are no credits left
     # - cron: "0 */2 * * *"
   workflow_dispatch:
 
